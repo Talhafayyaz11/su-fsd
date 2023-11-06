@@ -1,4 +1,3 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
 import fs from "fs";
 import { parse } from "csv-parse";
@@ -49,7 +48,10 @@ export default function handler(
       })
       .on("end", function () {
         const parsedData = sorter(
-          csvData.map((item: string[]) => ({ date: item[0], fileName: item[1] })),
+          csvData.map((item: string[]) => ({
+            date: item[0],
+            fileName: item[1],
+          })),
           req
         );
         res.status(200).json({ data: parsedData });
