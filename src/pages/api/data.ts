@@ -2,6 +2,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import fs from "fs";
 import { parse } from "csv-parse";
+import path from "path";
 
 interface fileItem {
   date: string;
@@ -39,10 +40,9 @@ export default function handler(
 ) {
   const csvData = [] as any;
   const query = req.query;
-  const { sortByFileName, sortByCreatedAt } = query;
-
+  const csvFilePath = path.join(process.cwd(), "public/data.csv");
   return new Promise<void>((resolve) => {
-    fs.createReadStream("public/data.csv")
+    fs.createReadStream(csvFilePath)
       .pipe(parse({ delimiter: ";" }))
       .on("data", function (csvRow) {
         csvData.push(csvRow);
