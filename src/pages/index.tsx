@@ -36,7 +36,7 @@ export default function Home() {
       </select>
       <div className="flex text-white w-9/12 flex-wrap">
         {data.map(({ date, fileName }: ICard) => (
-          <div className="w-1/2 p-4">
+          <div className="w-1/2 p-4" key={fileName}>
             <div className="bg-gray-950 border-white border-2	 rounded-lg p-4 shadow-md">
               <p>{date}</p>
               <p>{fileName}</p>
